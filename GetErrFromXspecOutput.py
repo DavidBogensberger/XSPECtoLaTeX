@@ -236,7 +236,7 @@ for i in range(N):
             re = str(round(re0, SFRe[i][iLe[i]]-FsfRe[i][iLe[i]]-1))
         else:
             re = str(round(0.5*(np.abs(Re[i][0])+Re[i][1]), SFRe[i][iLe[i]]-FsfRe[i][iLe[i]]-1))
-        LX[i] += '\pm' + re
+        LX[i] += '\pm' + re + '$'
     else:
         if FsfRe[i][1] - SFRe[i][1] > -1:
             re0 = int(round(Re[i][1]))
