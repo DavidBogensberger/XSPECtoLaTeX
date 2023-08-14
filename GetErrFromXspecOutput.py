@@ -164,8 +164,8 @@ def p10fsf(x): #power of 10 first significant figure.
 FsfR = [p10fsf(R[u]) for u in range(N)]
 FsfRe = [[p10fsf(Re[u][k]) for k in range(2)] for u in range(N)]
 
-print('FsfR = ', FsfR)
-print('FsfRe = ', FsfRe)
+#print('FsfR = ', FsfR)
+#print('FsfRe = ', FsfRe)
 
 #Find which of the two errors is larger.
 iLe = [0]*N #Larger
@@ -206,9 +206,9 @@ for i in range(N):
         else:
             SFRe[i][ile[i]] = 1
 
-print("\nSFR = ", SFR)
+#print("\nSFR = ", SFR)
 
-print("\nSFRe = ", SFRe)
+#print("\nSFRe = ", SFRe)
 
 #Now determine whether to do a single plus minus, or distinguish between the two errors.
 EE = [0]*N #When this is 1, the errors are equal, and I can use \pm
@@ -243,14 +243,16 @@ for i in range(N):
             rp = str(round(re0, SFRe[i][1]-FsfRe[i][1]-1))
         else:
             rp = str(round(Re[i][1], SFRe[i][1]-FsfRe[i][1]-1))
-        LX[i] += '^{+'+rp+'}'
         if FsfRe[i][0] - SFRe[i][0] > -1:
             re0 = int(round(Re[i][0]))
             rm = str(round(re0, SFRe[i][0]-FsfRe[i][0]-1))
         else:
             rm = str(round(Re[i][0], SFRe[i][0]-FsfRe[i][0]-1))
-        LX[i] += '_{'+rm+'}'
-    LX[i] += '$'
+        #Check if the + and - errors are identical:
+        if round(Re[i][1], SFRe[i][1]-FsfRe[i][1]-1) == np.abs(round(Re[i][0], SFRe[i][0]-FsfRe[i][0]-1)):
+            LX[i] += '\pm' + rp + '$'
+        else:
+            LX[i] += '^{+'+rp+'}_{'+rm+'}$'
 
 #Output is printed in a way that can easily be copy pasted.         
 print('\nOutput:')
