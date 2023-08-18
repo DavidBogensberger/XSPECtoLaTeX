@@ -38,6 +38,12 @@ for i in range(1, len(Itxr)-1):
                         while Itxr[i+j] != "+":
                             R1+= Itxr[i+j]
                             j += 1
+                        if Itxr[i+j+1] != "/":
+                            R1+= Itxr[i+j]
+                            j += 1
+                            while Itxr[i+j] != "+":
+                                R1+= Itxr[i+j]
+                                j += 1
                         i += j
                         k1 = 0
                         while R1[-1-k1].isnumeric() == 0:
@@ -47,6 +53,8 @@ for i in range(1, len(Itxr)-1):
                             if R1[-1-k1-k].isnumeric() == 1:
                                 k += 1
                             elif R1[-1-k1-k] == '-':
+                                k += 1
+                            elif R1[-1-k1-k] == '+':
                                 k += 1
                             elif R1[-1-k1-k] == 'E':
                                 k += 1
@@ -71,6 +79,12 @@ for i in range(1, len(Itxr)-1):
                             while Itxr[i+j] != "+":
                                 R1+= Itxr[i+j]
                                 j += 1
+                            if Itxr[i+j+1] != "/":
+                                R1+= Itxr[i+j]
+                                j += 1
+                                while Itxr[i+j] != "+":
+                                    R1+= Itxr[i+j]
+                                    j += 1
                             i += j
                             k1 = 0
                             while R1[-1-k1].isnumeric() == 0:
@@ -80,6 +94,8 @@ for i in range(1, len(Itxr)-1):
                                 if R1[-1-k1-k].isnumeric() == 1:
                                     k += 1
                                 elif R1[-1-k1-k] == '-':
+                                    k += 1
+                                elif R1[-1-k1-k] == '+':
                                     k += 1
                                 elif R1[-1-k1-k] == 'E':
                                     k += 1
